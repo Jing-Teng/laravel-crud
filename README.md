@@ -55,3 +55,19 @@ or
 ```
 sail up
 ```
+
+----
+
+Config and manipulate the database:
+
+```
+sail artisan migrate
+```
+
+```
+sail artisan migrate:refresh
+```
+
+```
+sail artisan db:seed
+```
