@@ -63,7 +63,7 @@ class userTaskController extends Controller
         $json = json_encode($data);
         Storage::disk('public')->put('json/user-list.json', $json);
 
-        $css1 = Storage::disk('public')->get('json/user-list.json');
-        return response($css1, 200)->header('Content-Type', 'text/csv');
+        $file = Storage::disk('public')->get('json/user-list.json');
+        return response($file, 200)->header('Content-Type', 'text/csv');
     }
 }
