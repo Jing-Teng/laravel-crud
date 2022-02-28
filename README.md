@@ -12,7 +12,7 @@ Build a simple dashboard that will allow you do the following:
 - [] Assign a task to a user
 - [] Remove a task from a user
 - [] Download a list of all users and tasks as a JSON
-- [] Create a seeder for users and tasks
+- [v] Create a seeder for users and tasks
 
 
 Notes:
