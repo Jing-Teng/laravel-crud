@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/tasks', 'App\Http\Controllers\APIs\TaskController');
 Route::resource('/users', 'App\Http\Controllers\APIs\UserController');
+
+// create a separate resource that manages the relation between users and tasks
+Route::get('/user-task',  ['App\Http\Controllers\APIs\UserTaskController', 'getUsersWithTasks']);
+Route::post('/user-task',  ['App\Http\Controllers\APIs\UserTaskController', 'assignTaskToUser']);
+Route::delete('/user-task',  ['App\Http\Controllers\APIs\UserTaskController', 'removeTaskFromUser']);
+Route::get('/download-user-task',  ['App\Http\Controllers\APIs\UserTaskController', 'downloadUserTaskJSON']);
+
+
