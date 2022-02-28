@@ -3,8 +3,8 @@
         <div class="card w-full">
             <div class="card-header flex justify-content-between">
                 <div class="">
-                    user name:
-                    <div class="mt-2 mb-4">
+                    <div class="mb-2">
+                        <div>user name:</div>
                         <div v-if="isUpdating">
                             <input type="text"
                                    v-model="inputName">
@@ -13,11 +13,9 @@
                             {{ inputName }}
                         </div>
                     </div>
-                </div>
 
-                <div class="">
-                    user role:
                     <div class="">
+                        <div>user role:</div>
                         <div v-if="isUpdating">
                             <input type="text"
                                    v-model="inputRole">
@@ -150,13 +148,18 @@ export default {
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify(data)
-            }).then(response => response.json())
+            }).then(response => {
+                if(!response.ok) {
+                    throw new Error('assign failed')
+                }
+                return response.json()
+            })
                 .then(json => {
                     console.log(json)
                     this.$emit('refresh')
                 })
                 .catch(e => {
-                    this.$emit('refresh')
+                    alert('assign failed')
                     console.log(e)
                 })
         },
@@ -174,13 +177,17 @@ export default {
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify(data)
-            }).then(response => response.json())
+            }).then(response => {
+                if(!response.ok) {
+                    throw new Error('remove failed')
+                }
+                return response.json()
+            })
                 .then(json => {
                     console.log(json)
                     this.$emit('refresh')
                 })
                 .catch(e => {
-                    this.$emit('refresh')
                     console.log(e)
                 })
         }

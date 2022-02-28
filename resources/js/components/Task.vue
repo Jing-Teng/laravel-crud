@@ -1,7 +1,25 @@
 <template>
-    <div class="flex justify-content-center">
+    <div class="flex justify-content-between">
         <div class="card w-full">
             <div class="card-header flex justify-content-between">
+                <div class="">
+                    task id: {{ id }}
+                </div>
+                <div class="flex justify-content-end">
+                    <div v-if="isUpdating">
+                        <button
+                            class="px-2 border rounded-lg"
+                            @click="handleUpdate">submit</button>
+                    </div>
+                    <div v-if="!isUpdating">
+                        <button @click="isUpdating = true"
+                                class="px-2 border rounded-lg">update</button>
+                        <button @click="handleDelete"
+                                class="px-2 border rounded-lg">delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
                 <div class="">
                     task name:
                     <div class="">
@@ -14,27 +32,17 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="isUpdating">
-                    <button
-                        class="px-2 border rounded-lg"
-                        @click="handleUpdate">submit</button>
-                </div>
-                <div v-if="!isUpdating">
-                    <button @click="isUpdating = true"
-                            class="px-2 border rounded-lg">update</button>
-                    <button @click="handleDelete"
-                            class="px-2 border rounded-lg">delete</button>
-                </div>
-            </div>
-            <div class="card-body">
-                due date:
+
                 <div class="">
-                    <div v-if="isUpdating">
-                        <input type="text"
-                               v-model="inputDue_date">
-                    </div>
-                    <div v-else="isUpdating">
-                        {{ inputDue_date }}
+                    due date:
+                    <div class="">
+                        <div v-if="isUpdating">
+                            <input type="text"
+                                   v-model="inputDue_date">
+                        </div>
+                        <div v-else="isUpdating">
+                            {{ inputDue_date }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,7 +119,7 @@
                     }
                 }).then(response => response.json())
                     .then(json => {
-                        console.log(json)
+                         console.log(json)
                          this.$emit('refresh')
                     })
                     .catch(e => {

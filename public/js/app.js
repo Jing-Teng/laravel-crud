@@ -5408,6 +5408,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["id", "name", "due_date"],
   data: function data() {
@@ -5692,8 +5700,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["id", "name", "role"],
   data: function data() {
@@ -5787,14 +5793,17 @@ __webpack_require__.r(__webpack_exports__);
         },
         body: JSON.stringify(data)
       }).then(function (response) {
+        if (!response.ok) {
+          throw new Error('assign failed');
+        }
+
         return response.json();
       }).then(function (json) {
         console.log(json);
 
         _this3.$emit('refresh');
       })["catch"](function (e) {
-        _this3.$emit('refresh');
-
+        alert('assign failed');
         console.log(e);
       });
     },
@@ -5813,14 +5822,16 @@ __webpack_require__.r(__webpack_exports__);
         },
         body: JSON.stringify(data)
       }).then(function (response) {
+        if (!response.ok) {
+          throw new Error('remove failed');
+        }
+
         return response.json();
       }).then(function (json) {
         console.log(json);
 
         _this4.$emit('refresh');
       })["catch"](function (e) {
-        _this4.$emit('refresh');
-
         console.log(e);
       });
     }
@@ -28785,9 +28796,58 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex justify-content-center" }, [
+  return _c("div", { staticClass: "flex justify-content-between" }, [
     _c("div", { staticClass: "card w-full" }, [
       _c("div", { staticClass: "card-header flex justify-content-between" }, [
+        _c("div", {}, [
+          _vm._v(
+            "\n                task id: " + _vm._s(_vm.id) + "\n            "
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex justify-content-end" }, [
+          _vm.isUpdating
+            ? _c("div", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "px-2 border rounded-lg",
+                    on: { click: _vm.handleUpdate },
+                  },
+                  [_vm._v("submit")]
+                ),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.isUpdating
+            ? _c("div", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "px-2 border rounded-lg",
+                    on: {
+                      click: function ($event) {
+                        _vm.isUpdating = true
+                      },
+                    },
+                  },
+                  [_vm._v("update")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "px-2 border rounded-lg",
+                    on: { click: _vm.handleDelete },
+                  },
+                  [_vm._v("delete")]
+                ),
+              ])
+            : _vm._e(),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
         _c("div", {}, [
           _vm._v("\n                task name:\n                "),
           _c("div", {}, [
@@ -28824,79 +28884,40 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm.isUpdating
-          ? _c("div", [
-              _c(
-                "button",
-                {
-                  staticClass: "px-2 border rounded-lg",
-                  on: { click: _vm.handleUpdate },
-                },
-                [_vm._v("submit")]
-              ),
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        !_vm.isUpdating
-          ? _c("div", [
-              _c(
-                "button",
-                {
-                  staticClass: "px-2 border rounded-lg",
-                  on: {
-                    click: function ($event) {
-                      _vm.isUpdating = true
-                    },
-                  },
-                },
-                [_vm._v("update")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "px-2 border rounded-lg",
-                  on: { click: _vm.handleDelete },
-                },
-                [_vm._v("delete")]
-              ),
-            ])
-          : _vm._e(),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _vm._v("\n            due date:\n            "),
         _c("div", {}, [
-          _vm.isUpdating
-            ? _c("div", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.inputDue_date,
-                      expression: "inputDue_date",
+          _vm._v("\n                due date:\n                "),
+          _c("div", {}, [
+            _vm.isUpdating
+              ? _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.inputDue_date,
+                        expression: "inputDue_date",
+                      },
+                    ],
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.inputDue_date },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.inputDue_date = $event.target.value
+                      },
                     },
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.inputDue_date },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.inputDue_date = $event.target.value
-                    },
-                  },
-                }),
-              ])
-            : _c("div", [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(_vm.inputDue_date) +
-                    "\n                "
-                ),
-              ]),
+                  }),
+                ])
+              : _c("div", [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.inputDue_date) +
+                      "\n                    "
+                  ),
+                ]),
+          ]),
         ]),
       ]),
     ]),
@@ -29038,8 +29059,9 @@ var render = function () {
     _c("div", { staticClass: "card w-full" }, [
       _c("div", { staticClass: "card-header flex justify-content-between" }, [
         _c("div", {}, [
-          _vm._v("\n                user name:\n                "),
-          _c("div", { staticClass: "mt-2 mb-4" }, [
+          _c("div", { staticClass: "mb-2" }, [
+            _c("div", [_vm._v("user name:")]),
+            _vm._v(" "),
             _vm.isUpdating
               ? _c("div", [
                   _c("input", {
@@ -29075,11 +29097,10 @@ var render = function () {
                 ])
               : _vm._e(),
           ]),
-        ]),
-        _vm._v(" "),
-        _c("div", {}, [
-          _vm._v("\n                user role:\n                "),
+          _vm._v(" "),
           _c("div", {}, [
+            _c("div", [_vm._v("user role:")]),
+            _vm._v(" "),
             _vm.isUpdating
               ? _c("div", [
                   _c("input", {
