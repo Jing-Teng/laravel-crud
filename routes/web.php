@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// 1.CRUD a User
+// 2.List all users and their respective tasks
+// 3.Assign to a user or remove a task from a user
+//      by taskId
+// 4.Download a list of all users and tasks as a JSON
+//      can download by JS or API
+Route::get('/', ['App\Http\Controllers\PageController', 'usersView']);
+
+// CRUD a Task
+Route::get('/tasks', ['App\Http\Controllers\PageController', 'tasksView']);

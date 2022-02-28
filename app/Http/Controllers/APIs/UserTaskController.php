@@ -12,6 +12,7 @@ class userTaskController extends Controller
 {
     public function getUsersWithTasks() {
         $users = User::select('id', 'name','role')
+            ->orderBy('updated_at', 'desc')
             ->with(['tasks' => function ($query) {
                     $query->select('id', 'name', 'due_date');
                 }]
@@ -60,9 +61,9 @@ class userTaskController extends Controller
     {
         $data = $this->getUsersWithTasks();
         $json = json_encode($data);
-        Storage::disk('public')->put('json/user-list2.json', $json);
+        Storage::disk('public')->put('json/user-list.json', $json);
 
-        $css1 = Storage::disk('public')->get('json/user-list2.json');
+        $css1 = Storage::disk('public')->get('json/user-list.json');
         return response($css1, 200)->header('Content-Type', 'text/csv');
     }
 }
