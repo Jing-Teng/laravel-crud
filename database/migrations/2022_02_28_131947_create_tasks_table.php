@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->uuid('id')->primary()->index();
             $table->string('name');
             $table->dateTime('due_date');
+            $table->timestamps();
             $table->softDeletes();
         });
     }

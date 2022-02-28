@@ -43,6 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public $incrementing = false;
+
     public function tasks()
     {
         return $this->belongsToMany(Task::class, 'user_task');

@@ -18,6 +18,8 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
+            'id' => $this->faker->unique()->uuid(),
+
             'name' => "coding",
             "due_date" => "2022-03-01 12:00:00"
         ];
