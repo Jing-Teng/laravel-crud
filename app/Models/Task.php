@@ -25,9 +25,6 @@ class Task extends Model
         'pivot'
     ];
 
-    public $incrementing = false;
-
-
     public function users()
     {
         return $this->belongsToMany(User::Class, 'user_task');
