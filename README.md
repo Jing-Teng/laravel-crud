@@ -6,13 +6,13 @@ The goal of this challenge is to evaluate your approach and execution rather tha
 # Requirements
 Build a simple dashboard that will allow you do the following:
 
-- [v] List all users and their respective tasks
-- [v] CRUD a user
-- [v] CRUD a task
-- [v] Assign a task to a user
-- [v] Remove a task from a user
-- [v] Download a list of all users and tasks as a JSON
-- [v] Create a seeder for users and tasks
+- [x] List all users and their respective tasks
+- [x] CRUD a user
+- [x] CRUD a task
+- [x] Assign a task to a user
+- [x] Remove a task from a user
+- [x] Download a list of all users and tasks as a JSON
+- [x] Create a seeder for users and tasks
 
 
 Notes:
